@@ -10,5 +10,28 @@
         <input type="text" id="imageUrl" name="imageUrl">
         <input type="submit" value="Procesar imagen">
     </form>
+
+    <img id="processedImage" src="" alt="Imagen procesada" style="display: none;">
+    <script>
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            fetch('/process-image', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'imageUrl=' + encodeURIComponent(document.querySelector('#imageUrl').value)
+            })
+            .then(response => response.json())
+            .then(data => {
+                let img = document.querySelector('#processedImage');
+                img.src = data.newImageUrl;
+                img.style.display = 'block';
+            })
+            .catch(err => console.error(err));
+        });
+        </script>
+        
+
 </body>
 </html>

@@ -16,13 +16,15 @@ app.post('/process-image', (req, res) => {
     let imageUrl = req.body.imageUrl;
     imageProcessor.processImage(imageUrl)
         .then(newImageUrl => {
-            res.redirect(newImageUrl);
+            res.json({ newImageUrl });
         })
         .catch(err => {
             console.error(err);
             res.status(500).send('Error al procesar la imagen');
         });
 });
+
+
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Servidor corriendo en http://localhost:${port}`));
