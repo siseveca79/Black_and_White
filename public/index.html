@@ -5,13 +5,20 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <form action="/process-image" method="post">
-        <label for="imageUrl">URL de la imagen:</label>
-        <input type="text" id="imageUrl" name="imageUrl">
-        <input type="submit" value="Procesar imagen">
-    </form>
 
-    <img id="processedImage" src="" alt="Imagen procesada" style="display: none;">
+    <h1>Black and White Spa</h1>
+
+    <div class="container">
+        <form action="/process-image" method="post" style="display: flex; flex-direction: column;">
+            <label for="imageUrl" style="margin-bottom: 10px;">URL de la imagen:</label>
+            <input type="text" id="imageUrl" name="imageUrl" style="margin-bottom: 10px;">
+            <input type="submit" value="Procesar imagen">
+        </form>
+        
+    
+        <img id="processedImage" src="" alt="Imagen procesada" style="display: none;">
+    </div>
+    
     <script>
         document.querySelector('form').addEventListener('submit', function(event) {
             event.preventDefault();
@@ -30,8 +37,6 @@
             })
             .catch(err => console.error(err));
         });
-        </script>
-        
-
+    </script>
 </body>
 </html>
